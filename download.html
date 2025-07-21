@@ -36,7 +36,7 @@
 
         .particle {
             position: absolute;
-            background: linear-gradient(45deg, #00ff88, #00cc66);
+            background: linear-gradient(45deg, #00ffff, #00cccc);
             border-radius: 50%;
             animation: float 6s ease-in-out infinite;
         }
@@ -49,13 +49,13 @@
         /* Main download card */
         .download-card {
             background: rgba(0, 0, 0, 0.8);
-            border: 2px solid rgba(0, 255, 136, 0.3);
+            border: 2px solid rgba(0, 255, 255, 0.3);
             border-radius: 20px;
             padding: 40px;
             max-width: 450px;
             width: 90%;
             backdrop-filter: blur(15px);
-            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.1), 0 10px 20px rgba(128, 0, 128, 0.05);
             animation: cardGlow 3s ease-in-out infinite alternate;
             position: relative;
             overflow: hidden;
@@ -63,12 +63,12 @@
 
         @keyframes cardGlow {
             from { 
-                box-shadow: 0 20px 40px rgba(0, 255, 136, 0.1);
-                border-color: rgba(0, 255, 136, 0.3);
+                box-shadow: 0 20px 40px rgba(0, 255, 255, 0.1), 0 10px 20px rgba(128, 0, 128, 0.05);
+                border-color: rgba(0, 255, 255, 0.3);
             }
             to { 
-                box-shadow: 0 25px 50px rgba(0, 255, 136, 0.2);
-                border-color: rgba(0, 255, 136, 0.5);
+                box-shadow: 0 25px 50px rgba(0, 255, 255, 0.2), 0 15px 30px rgba(128, 0, 128, 0.1);
+                border-color: rgba(0, 255, 255, 0.5);
             }
         }
 
@@ -79,7 +79,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
             animation: shimmer 3s infinite;
         }
 
@@ -88,13 +88,38 @@
             100% { left: 100%; }
         }
 
-        /* Title */
+        /* Title with logo */
+        .title-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+            animation: logoGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes logoGlow {
+            from { 
+                box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+                filter: drop-shadow(0 0 5px rgba(128, 0, 128, 0.2));
+            }
+            to { 
+                box-shadow: 0 8px 25px rgba(0, 255, 255, 0.5);
+                filter: drop-shadow(0 0 10px rgba(128, 0, 128, 0.4));
+            }
+        }
+
         .title {
             font-size: 2.5rem;
             font-weight: bold;
-            text-align: center;
-            margin-bottom: 10px;
-            background: linear-gradient(45deg, #00ff88, #00cc66);
+            background: linear-gradient(45deg, #00ffff, #00cccc, #9966cc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -104,11 +129,11 @@
         @keyframes titlePulse {
             0%, 100% { 
                 transform: scale(1);
-                filter: drop-shadow(0 0 10px rgba(0, 255, 136, 0.5));
+                filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.5)) drop-shadow(0 0 5px rgba(128, 0, 128, 0.3));
             }
             50% { 
                 transform: scale(1.02);
-                filter: drop-shadow(0 0 15px rgba(0, 255, 136, 0.8));
+                filter: drop-shadow(0 0 15px rgba(0, 255, 255, 0.8)) drop-shadow(0 0 8px rgba(128, 0, 128, 0.5));
             }
         }
 
@@ -119,6 +144,7 @@
             margin-bottom: 40px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            text-shadow: 0 0 5px rgba(128, 0, 128, 0.3);
         }
 
         /* Info items */
@@ -138,7 +164,8 @@
 
         .info-item:hover {
             transform: translateX(10px);
-            border-bottom-color: rgba(0, 255, 136, 0.3);
+            border-bottom-color: rgba(0, 255, 255, 0.3);
+            box-shadow: 0 2px 10px rgba(128, 0, 128, 0.1);
         }
 
         .info-item:last-child {
@@ -151,12 +178,13 @@
             text-transform: uppercase;
             font-weight: 500;
             letter-spacing: 1px;
+            text-shadow: 0 0 3px rgba(128, 0, 128, 0.2);
         }
 
         .info-value {
             font-size: 1.1rem;
             font-weight: bold;
-            background: linear-gradient(45deg, #00ff88, #00cc66);
+            background: linear-gradient(45deg, #00ffff, #00cccc, #9966cc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -164,14 +192,14 @@
         }
 
         @keyframes valueGlow {
-            from { filter: drop-shadow(0 0 5px rgba(0, 255, 136, 0.3)); }
-            to { filter: drop-shadow(0 0 10px rgba(0, 255, 136, 0.6)); }
+            from { filter: drop-shadow(0 0 5px rgba(0, 255, 255, 0.3)) drop-shadow(0 0 3px rgba(128, 0, 128, 0.2)); }
+            to { filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.6)) drop-shadow(0 0 6px rgba(128, 0, 128, 0.4)); }
         }
 
         /* Download button */
         .download-btn {
             width: 100%;
-            background: linear-gradient(45deg, #00ff88, #00cc66);
+            background: linear-gradient(45deg, #00ffff, #00cccc, #9966cc);
             color: #000;
             padding: 18px;
             border: none;
@@ -187,13 +215,13 @@
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3), 0 5px 15px rgba(128, 0, 128, 0.2);
         }
 
         .download-btn:hover {
             transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.5);
-            background: linear-gradient(45deg, #00cc66, #00ff88);
+            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.5), 0 8px 25px rgba(128, 0, 128, 0.3);
+            background: linear-gradient(45deg, #00cccc, #00ffff, #aa77dd);
         }
 
         .download-btn::before {
@@ -214,6 +242,7 @@
         .download-icon {
             font-size: 1.5rem;
             animation: bounce 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 3px rgba(128, 0, 128, 0.5));
         }
 
         @keyframes bounce {
@@ -231,6 +260,11 @@
             
             .title {
                 font-size: 2rem;
+            }
+            
+            .logo {
+                width: 40px;
+                height: 40px;
             }
             
             .info-label, .info-value {
@@ -257,7 +291,7 @@
         .loading-progress {
             width: 0;
             height: 100%;
-            background: linear-gradient(45deg, #00ff88, #00cc66);
+            background: linear-gradient(45deg, #00ffff, #00cccc, #9966cc);
             border-radius: 2px;
             animation: loading 3s ease-out forwards;
         }
@@ -266,13 +300,35 @@
             0% { width: 0; }
             100% { width: 100%; }
         }
+
+        /* Purple accent decorations */
+        .download-card::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, rgba(0, 255, 255, 0.1), rgba(128, 0, 128, 0.1), transparent);
+            border-radius: 22px;
+            z-index: -1;
+            animation: borderPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes borderPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
     </style>
 </head>
 <body>
     <div class="background" id="particles"></div>
     
     <div class="download-card">
-        <h1 class="title">Lune Executor</h1>
+        <div class="title-container">
+            <img src="https://iili.io/FNAUopS.md.png" alt="Lune Executor Logo" class="logo">
+            <h1 class="title">Lune Executor</h1>
+        </div>
         <p class="subtitle">LUNE CRIADO POR ICYRLQ</p>
         
         <div class="info-grid">
