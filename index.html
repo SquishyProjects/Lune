@@ -5,118 +5,290 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lune - Executor Roblox</title>
     <style>
-        body {
-            background-color: #000;
-            color: #fff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        :root {
+            --roxo: #8a2be2;
+            --roxo-escuro: #5f00a8;
+            --ciano: #00ffff;
+            --ciano-escuro: #00b7b7;
+            --preto: #0a0a0a;
+            --cinza: #1a1a1a;
+            --branco: #ffffff;
+        }
+        
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--preto);
+            color: var(--branco);
+            font-family: 'Consolas', 'Courier New', monospace;
             line-height: 1.6;
+            overflow-x: hidden;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
         }
         
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
-            border-bottom: 1px solid #6a0dad;
+            padding: 25px 0;
+            position: relative;
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--roxo), var(--ciano), transparent);
         }
         
         .logo {
-            height: 60px;
+            height: 70px;
+            filter: drop-shadow(0 0 5px var(--ciano));
         }
         
         nav ul {
             display: flex;
             list-style: none;
-            gap: 20px;
+            gap: 30px;
         }
         
         nav a {
-            color: #00ffff;
+            color: var(--branco);
             text-decoration: none;
             font-weight: bold;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
             transition: color 0.3s;
         }
         
         nav a:hover {
-            color: #6a0dad;
+            color: var(--ciano);
         }
         
-        h1, h2, h3 {
-            color: #00ffff;
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--ciano);
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
         }
         
         .hero {
             text-align: center;
             padding: 60px 0;
+            position: relative;
         }
         
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent, rgba(138, 43, 226, 0.1));
+            pointer-events: none;
+        }
+        
+        h1 {
+            font-size: 4.5rem;
+            margin-bottom: 10px;
+            color: var(--ciano);
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            letter-spacing: 3px;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--roxo);
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
         
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             max-width: 800px;
-            margin: 0 auto 30px;
+            margin: 0 auto 50px;
+            color: var(--branco);
         }
         
         .features {
             display: flex;
-            justify-content: space-around;
-            margin: 40px 0;
+            justify-content: center;
+            gap: 50px;
+            margin: 60px 0;
             text-align: center;
+            flex-wrap: wrap;
         }
         
         .feature-item {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: bold;
+            color: var(--branco);
+            text-shadow: 0 0 5px var(--ciano);
+            position: relative;
+            padding: 0 15px;
+        }
+        
+        .feature-item::before, .feature-item::after {
+            content: '//';
+            color: var(--roxo);
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.6;
+        }
+        
+        .feature-item::before {
+            left: -20px;
+        }
+        
+        .feature-item::after {
+            right: -20px;
         }
         
         .divider {
-            border-top: 1px solid #6a0dad;
-            margin: 40px 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--roxo), var(--ciano), transparent);
+            margin: 50px auto;
+            max-width: 800px;
         }
         
         .download-btn {
             display: inline-block;
-            background: linear-gradient(45deg, #6a0dad, #00ffff);
-            color: #000;
-            padding: 15px 30px;
-            border-radius: 5px;
+            background: linear-gradient(45deg, var(--roxo), var(--ciano));
+            color: var(--preto);
+            padding: 15px 40px;
+            border-radius: 3px;
             text-decoration: none;
             font-weight: bold;
-            margin: 20px 0;
-            transition: transform 0.3s;
+            font-size: 1.2rem;
+            margin: 30px 0;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
         }
         
         .download-btn:hover {
-            transform: scale(1.05);
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+        }
+        
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .download-btn:hover::before {
+            left: 100%;
         }
         
         .code-sample {
-            background-color: #111;
-            padding: 20px;
+            background-color: rgba(10, 10, 10, 0.8);
+            padding: 25px;
             border-radius: 5px;
-            border-left: 4px solid #00ffff;
-            font-family: monospace;
-            margin: 30px 0;
+            border-left: 4px solid var(--ciano);
+            font-family: 'Consolas', 'Courier New', monospace;
+            margin: 50px auto;
+            max-width: 700px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .code-sample::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 255, 255, 0.05), rgba(138, 43, 226, 0.05));
+            pointer-events: none;
         }
         
         .code-line {
-            margin: 5px 0;
+            margin: 8px 0;
+            color: var(--branco);
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .code-line::before {
+            content: attr(data-line);
+            position: absolute;
+            left: 0;
+            color: var(--roxo);
+            opacity: 0.6;
         }
         
         .comment {
-            color: #6a0dad;
+            color: var(--roxo);
+            font-style: italic;
+        }
+        
+        .string {
+            color: var(--ciano);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            border-top: 1px solid rgba(138, 43, 226, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            .features {
+                gap: 30px;
+            }
+            
+            .feature-item {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -153,11 +325,15 @@
             <div class="divider"></div>
             
             <div class="code-sample">
-                <div class="code-line">1 loading (game:HttpGet("script.lua"))()</div>
-                <div class="code-line comment">2 -- Lune Executor Ready!</div>
-                <div class="code-line">3 print ("100% UNC Compatibility")</div>
+                <div class="code-line" data-line="1"><span class="string">loading (game:HttpGet("script.lua"))()</span></div>
+                <div class="code-line comment" data-line="2">-- Lune Executor Ready!</div>
+                <div class="code-line" data-line="3">print (<span class="string">"100% UNC Compatibility"</span>)</div>
             </div>
         </section>
+        
+        <footer>
+            <p>&copy; 2023 Lune Executor. Todos os direitos reservados.</p>
+        </footer>
     </div>
 </body>
 </html>
