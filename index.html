@@ -110,9 +110,11 @@
         .main-content {
             display: flex;
             align-items: center;
+            justify-content: center;
             padding: 100px 50px;
             gap: 100px;
             position: relative;
+            min-height: 80vh;
         }
 
         .left-section {
@@ -374,6 +376,122 @@
             50% { opacity: 0.6; transform: scale(1.1); }
         }
 
+        /* Features Section */
+        .features-section {
+            padding: 100px 50px;
+            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(138,43,226,0.05) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .features-title {
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 60px;
+            background: linear-gradient(135deg, #00ffff, #8a2be2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(20, 20, 20, 0.8), rgba(40, 0, 40, 0.3));
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.05), rgba(138, 43, 226, 0.05));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 255, 255, 0.2), 0 0 30px rgba(138, 43, 226, 0.3);
+            border-color: rgba(0, 255, 255, 0.5);
+        }
+
+        .feature-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #00ffff, #8a2be2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(138, 43, 226, 0.4);
+        }
+
+        .feature-icon svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .feature-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-description {
+            color: #ccc;
+            line-height: 1.6;
+            font-size: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .header {
@@ -386,6 +504,20 @@
                 flex-direction: column;
                 padding: 50px 20px;
                 gap: 50px;
+                justify-content: center;
+            }
+
+            .features-section {
+                padding: 80px 20px;
+            }
+
+            .features-title {
+                font-size: 36px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
 
             .title {
@@ -424,9 +556,8 @@
         </div>
         <nav class="nav">
             <a href="#inicio">Início</a>
-            <a href="#features">Features</a>
+            <a href="#features" onclick="scrollToFeatures()">Features</a>
             <a href="#download">Download</a>
-            <a href="#contato">Contato</a>
         </nav>
     </header>
 
@@ -486,6 +617,63 @@
             </div>
         </div>
     </main>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="features-container">
+            <h2 class="features-title">Por que escolher Lune?</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">100% UNC</h3>
+                    <p class="feature-description">
+                        Compatibilidade total com Universal Naming Convention. Execute qualquer script sem limitações.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="currentColor" d="M18,8A6,6 0 0,1 12,14A6,6 0 0,1 6,8C6,5.31 7.8,3.07 10.34,2.42C10.22,2.95 10.16,3.5 10.16,4.06C10.16,7.15 12.85,9.84 15.94,9.84C16.5,9.84 17.05,9.78 17.58,9.66C16.93,12.2 14.69,14 12,14A6,6 0 0,1 6,8A6,6 0 0,1 12,2A6,6 0 0,1 18,8Z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">No Key</h3>
+                    <p class="feature-description">
+                        Sem necessidade de chaves ou verificações. Download direto e uso imediato.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="currentColor" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">No Crash</h3>
+                    <p class="feature-description">
+                        Sistema anti-crash avançado. Estabilidade garantida em todas as situações.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="currentColor" d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.22,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.22,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.68 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Interface Moderna</h3>
+                    <p class="feature-description">
+                        Design intuitivo e moderno. Fácil de usar para iniciantes e profissionais.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <script>
         // Criar partículas animadas no fundo
@@ -552,11 +740,39 @@
             });
         }
 
+        // Smooth scroll para a seção features
+        function scrollToFeatures() {
+            document.getElementById('features').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Animação dos cards de features quando entram na tela
+        function animateFeatures() {
+            const cards = document.querySelectorAll('.feature-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('animate');
+                        }, index * 200);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+        }
+
         // Smooth scroll para links de navegação
         document.querySelectorAll('.nav a').forEach(link => {
             link.addEventListener('click', (e) => {
-                e.preventDefault();
-                // Adicione aqui a lógica de scroll suave se tiver seções correspondentes
+                if (link.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                }
             });
         });
 
@@ -565,6 +781,7 @@
             createParticles();
             setTimeout(typewriterEffect, 500);
             setTimeout(animateStats, 1000);
+            animateFeatures();
         });
 
         // Efeito de mouse trail (rastro do mouse)
