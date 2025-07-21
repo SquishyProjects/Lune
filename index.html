@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lune - Executor Roblox</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #6a0dad;
+        }
+        
+        .logo {
+            height: 60px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: #00ffff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #6a0dad;
+        }
+        
+        h1, h2, h3 {
+            color: #00ffff;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .features {
+            display: flex;
+            justify-content: space-around;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .feature-item {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .divider {
+            border-top: 1px solid #6a0dad;
+            margin: 40px 0;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(45deg, #6a0dad, #00ffff);
+            color: #000;
+            padding: 15px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 20px 0;
+            transition: transform 0.3s;
+        }
+        
+        .download-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .code-sample {
+            background-color: #111;
+            padding: 20px;
+            border-radius: 5px;
+            border-left: 4px solid #00ffff;
+            font-family: monospace;
+            margin: 30px 0;
+        }
+        
+        .code-line {
+            margin: 5px 0;
+        }
+        
+        .comment {
+            color: #6a0dad;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="https://iili.io/FNAUopS.md.png" alt="Lune Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="#">Início</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Download</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <section class="hero">
+            <h1>Lune</h1>
+            <h2>Executor</h2>
+            <p>O executor mais poderoso e confiável para Roblox. Sem travamentos, sem chaves, máxima compatibilidade.</p>
+            
+            <div class="features">
+                <div class="feature-item">100%</div>
+                <div class="feature-item">UNC</div>
+                <div class="feature-item">CRASHES</div>
+                <div class="feature-item">APIS</div>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <a href="#" class="download-btn">Download Grátis</a>
+            
+            <div class="divider"></div>
+            
+            <div class="code-sample">
+                <div class="code-line">1 loading (game:HttpGet("script.lua"))()</div>
+                <div class="code-line comment">2 -- Lune Executor Ready!</div>
+                <div class="code-line">3 print ("100% UNC Compatibility")</div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
