@@ -287,20 +287,6 @@
             z-index: 1;
         }
 
-        .terminal-dots {
-            display: flex;
-            gap: 8px;
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
-        .dot.red { background: #ff5f57; }
-        .dot.yellow { background: #ffbd2e; }
-        .dot.green { background: #28ca42; }
 
         .terminal-title {
             color: #00ffff;
@@ -492,6 +478,270 @@
             z-index: 1;
         }
 
+        /* Download Section */
+        .download-section {
+            padding: 100px 50px;
+            background: linear-gradient(180deg, rgba(138,43,226,0.05) 0%, rgba(0,0,0,0) 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .download-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            width: 100%;
+        }
+
+        .download-title {
+            font-size: 56px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #00ffff, #8a2be2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .download-subtitle {
+            font-size: 20px;
+            color: #ccc;
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .download-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 80px;
+            margin-bottom: 40px;
+        }
+
+        .download-info-card {
+            background: linear-gradient(135deg, rgba(20, 20, 20, 0.9), rgba(40, 0, 40, 0.3));
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: left;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            max-width: 400px;
+            width: 100%;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+
+        .download-info-card.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .download-info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.05), rgba(138, 43, 226, 0.05));
+            pointer-events: none;
+        }
+
+        .executor-name {
+            font-size: 28px;
+            font-weight: bold;
+            color: #00ffff;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .executor-subtitle {
+            font-size: 12px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .download-specs {
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(138, 43, 226, 0.2);
+        }
+
+        .spec-row:last-child {
+            border-bottom: none;
+        }
+
+        .spec-label {
+            color: #999;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .spec-value {
+            color: #00ffff;
+            font-weight: bold;
+        }
+
+        .download-final-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #00ffff, #8a2be2);
+            border: none;
+            padding: 18px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .download-final-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .download-final-btn:hover::before {
+            left: 100%;
+        }
+
+        .download-final-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(138, 43, 226, 0.4);
+        }
+
+        .download-icon {
+            font-size: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .download-final-btn:hover .download-icon {
+            transform: translateY(3px);
+        }
+
+        .download-visual {
+            flex: 1;
+            max-width: 500px;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease 0.2s;
+        }
+
+        .download-visual.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .laptop-mockup {
+            background: linear-gradient(135deg, #333, #111);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            transform: perspective(1000px) rotateX(5deg) rotateY(-5deg);
+            position: relative;
+        }
+
+        .laptop-screen {
+            background: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            aspect-ratio: 16/10;
+            position: relative;
+        }
+
+        .screen-content {
+            padding: 20px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mock-terminal {
+            background: linear-gradient(135deg, rgba(20, 20, 20, 0.9), rgba(40, 0, 40, 0.3));
+            border-radius: 10px;
+            padding: 15px;
+            width: 100%;
+            max-width: 300px;
+            border: 1px solid rgba(138, 43, 226, 0.3);
+        }
+
+        .mock-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+ 
+
+        .mock-code {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+        }
+
+        .mock-line {
+            color: #00ffff;
+            margin: 8px 0;
+            opacity: 0;
+            animation: typeIn 0.8s ease forwards;
+        }
+
+        .mock-line:nth-child(1) { animation-delay: 1s; }
+        .mock-line:nth-child(2) { animation-delay: 1.5s; }
+        .mock-line:nth-child(3) { animation-delay: 2s; }
+
+        @keyframes typeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .download-note {
+            color: #888;
+            font-style: italic;
+            margin-top: 20px;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .header {
@@ -518,6 +768,27 @@
             .features-grid {
                 grid-template-columns: 1fr;
                 gap: 30px;
+            }
+
+            .download-section {
+                padding: 80px 20px;
+            }
+
+            .download-title {
+                font-size: 40px;
+            }
+
+            .download-content {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .download-visual {
+                transform: none;
+            }
+
+            .laptop-mockup {
+                transform: none;
             }
 
             .title {
@@ -567,8 +838,7 @@
             <h1 class="title">Lune</h1>
             <h2 class="subtitle">Executor</h2>
             <p class="description">
-                O executor mais poderoso e confiável para Roblox. Sem 
-                travamentos, sem chaves, máxima compatibilidade.
+               O executor mais estável e eficiente para Roblox. Sem travamentos, sem sistemas de key, com compatibilidade total.
             </p>
             
             <div class="stats">
@@ -581,38 +851,32 @@
                     <div class="stat-label">Crashes</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-number">3</div>
-                    <div class="stat-label">APIs</div>
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">API Eficiente</div>
                 </div>
             </div>
 
-            <a href="#download" class="download-btn">Download Grátis</a>
+            <a href="#download" class="download-btn" onclick="scrollToDownload()">Download Grátis</a>
         </div>
 
         <div class="right-section">
             <div class="terminal">
                 <div class="terminal-header">
-                    <div class="terminal-dots">
-                        <div class="dot red"></div>
-                        <div class="dot yellow"></div>
-                        <div class="dot green"></div>
+             
                     </div>
                     <div class="terminal-title">Lune.exe</div>
                 </div>
                 
-                <div class="code-line">
-                    <span class="line-number">1</span>
-                    <span class="function">loadstring</span><span class="code-text">(</span><span class="code-text">game</span><span class="code-text">:</span><span class="function">HttpGet</span><span class="code-text">(</span><span class="string">"script.lua"</span><span class="code-text">))()</span>
-                </div>
+             
                 
                 <div class="code-line">
-                    <span class="line-number">2</span>
+                    <span class="line-number">1</span>
                     <span class="comment">-- Lune Executor Ready!</span>
                 </div>
                 
                 <div class="code-line">
-                    <span class="line-number">3</span>
-                    <span class="function">print</span><span class="code-text">(</span><span class="string">"100% UNC Compatibility"</span><span class="code-text">)</span>
+                    <span class="line-number">2</span>
+                    <span class="function">print</span><span class="code-text">(</span><span class="string">"Lune"</span><span class="code-text">)</span>
                 </div>
             </div>
         </div>
@@ -672,6 +936,63 @@
                     </p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="download-section">
+        <div class="download-container">
+            <h2 class="download-title">Pronto para começar?</h2>
+            <p class="download-subtitle">Baixe o Lune agora e experimente o melhor executor para Roblox</p>
+            
+            <div class="download-content">
+                <div class="download-info-card">
+                    <h3 class="executor-name">Lune Executor</h3>
+                    <p class="executor-subtitle">LUNE EXECUTOR CRIADO POR ICYRLQ</p>
+                    
+                    <div class="download-specs">
+                        <div class="spec-row">
+                            <span class="spec-label">VERSÃO:</span>
+                            <span class="spec-value">v2</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">TAMANHO:</span>
+                            <span class="spec-value">6 MB</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">SISTEMA:</span>
+                            <span class="spec-value">Windows 10/11</span>
+                        </div>
+                    </div>
+                    
+                    <button class="download-final-btn">
+                        <span class="download-icon">⬇</span>
+                        Download Lune
+                    </button>
+                </div>
+                
+                <div class="download-visual">
+                    <div class="laptop-mockup">
+                        <div class="laptop-screen">
+                            <div class="screen-content">
+                                <div class="mock-terminal">
+                                    <div class="mock-header">
+                                        
+                                        </div>
+                                    </div>
+                                    <div class="mock-code">
+                                        <div class="mock-line">→ Lune Executor iniciado</div>
+                                        <div class="mock-line">→ Sistema carregado com sucesso</div>
+                                        <div class="mock-line">→ Pronto para executar scripts</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="download-note">* Gratuito para sempre</p>
         </div>
     </section>
 
@@ -747,6 +1068,13 @@
             });
         }
 
+        // Smooth scroll para a seção download
+        function scrollToDownload() {
+            document.getElementById('download').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
         // Animação dos cards de features quando entram na tela
         function animateFeatures() {
             const cards = document.querySelectorAll('.feature-card');
@@ -767,6 +1095,29 @@
             });
         }
 
+        // Animação da seção download quando entra na tela
+        function animateDownload() {
+            const downloadCard = document.querySelector('.download-info-card');
+            const downloadVisual = document.querySelector('.download-visual');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            downloadCard.classList.add('animate');
+                        }, 300);
+                        setTimeout(() => {
+                            downloadVisual.classList.add('animate');
+                        }, 600);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            observer.observe(document.querySelector('.download-section'));
+        }
+
         // Smooth scroll para links de navegação
         document.querySelectorAll('.nav a').forEach(link => {
             link.addEventListener('click', (e) => {
@@ -782,6 +1133,7 @@
             setTimeout(typewriterEffect, 500);
             setTimeout(animateStats, 1000);
             animateFeatures();
+            animateDownload();
         });
 
         // Efeito de mouse trail (rastro do mouse)
