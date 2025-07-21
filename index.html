@@ -3,37 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lune - Executor</title>
+    <title>Lune Executor</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background-color: #000;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
             color: white;
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
             overflow-x: hidden;
         }
 
-        /* Efeito de partículas no fundo */
-        .bg-particles {
+        /* Animated background particles */
+        .background {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            opacity: 0.1;
+            opacity: 0.3;
         }
 
         .particle {
             position: absolute;
-            width: 2px;
-            height: 2px;
-            background: linear-gradient(45deg, #00ffff, #8a2be2);
+            background: linear-gradient(45deg, #00d4ff, #0099cc);
             border-radius: 50%;
             animation: float 6s ease-in-out infinite;
         }
@@ -44,179 +43,328 @@
         }
 
         /* Header */
-        .header {
+        header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 20px 50px;
             position: relative;
-            z-index: 10;
+            z-index: 100;
         }
 
         .logo {
             display: flex;
             align-items: center;
             gap: 15px;
-            font-size: 32px;
-            font-weight: bold;
-            color: #00ffff;
-            text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
         }
 
         .logo img {
             width: 40px;
             height: 40px;
-            filter: drop-shadow(0 0 10px rgba(138, 43, 226, 0.8));
+            filter: drop-shadow(0 0 10px #00d4ff);
+            animation: glow 2s ease-in-out infinite alternate;
         }
 
-        .nav {
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 10px #00d4ff); }
+            to { filter: drop-shadow(0 0 20px #00d4ff) drop-shadow(0 0 30px #0099cc); }
+        }
+
+        .logo span {
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00d4ff, #0099cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav {
             display: flex;
             gap: 30px;
         }
 
-        .nav a {
+        nav a {
             color: #ccc;
             text-decoration: none;
             font-size: 16px;
             transition: all 0.3s ease;
             position: relative;
-            padding: 8px 16px;
-            border-radius: 20px;
         }
 
-        .nav a:hover {
-            color: #00ffff;
-            background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(0, 255, 255, 0.1));
+        nav a:hover {
+            color: #00d4ff;
             transform: translateY(-2px);
         }
 
-        .nav a::before {
+        nav a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
-            left: 50%;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, #8a2be2, #00ffff);
-            transform: translateX(-50%);
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(45deg, #00d4ff, #0099cc);
             transition: width 0.3s ease;
         }
 
-        .nav a:hover::before {
-            width: 80%;
+        nav a:hover::after {
+            width: 100%;
         }
 
-        /* Main Content */
+        /* Main content */
         .main-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 100px 50px;
-            gap: 100px;
-            position: relative;
-            min-height: 80vh;
+            text-align: center;
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .left-section {
-            flex: 1;
-            max-width: 600px;
-        }
-
-        .title {
-            font-size: 120px;
+        .main-title {
+            font-size: 6rem;
             font-weight: bold;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #00ffff, #8a2be2);
+            background: linear-gradient(45deg, #00d4ff, #0099cc, #00ffaa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
-            position: relative;
+            margin-bottom: 30px;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+            text-shadow: 0 0 50px rgba(0, 212, 255, 0.5);
         }
 
-        .title::before {
-            content: 'Lune';
-            position: absolute;
-            top: 0;
-            left: 0;
-            background: linear-gradient(135deg, #8a2be2, #00ffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            z-index: -1;
-            transform: translate(2px, 2px);
-            opacity: 0.3;
+        @keyframes titleGlow {
+            from { 
+                filter: drop-shadow(0 0 20px #00d4ff);
+                transform: scale(1);
+            }
+            to { 
+                filter: drop-shadow(0 0 40px #00d4ff) drop-shadow(0 0 60px #0099cc);
+                transform: scale(1.02);
+            }
         }
 
         .subtitle {
-            font-size: 48px;
-            color: white;
-            margin-bottom: 30px;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #e0e0e0;
             font-weight: 300;
         }
 
         .description {
-            font-size: 18px;
-            color: #ccc;
+            font-size: 1.2rem;
+            color: #b0b0b0;
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
             line-height: 1.6;
-            margin-bottom: 50px;
         }
 
+        /* Stats section */
         .stats {
             display: flex;
+            justify-content: center;
             gap: 80px;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
         }
 
-        .stat {
-            text-align: left;
+        .stat-item {
+            text-align: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-number-container {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            margin-bottom: 10px;
         }
 
         .stat-number {
-            font-size: 64px;
+            font-size: 4rem;
             font-weight: bold;
-            color: #00ffff;
-            text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
-            margin-bottom: 5px;
+            background: linear-gradient(45deg, #00d4ff, #00ffaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             position: relative;
+            animation: pulse 2s ease-in-out infinite;
         }
 
-        .stat-number::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, #8a2be2, #00ffff);
-            border-radius: 2px;
-            box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
+        .stat-percent {
+            font-size: 4rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00d4ff, #00ffaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { 
+                transform: scale(1);
+                filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.5));
+            }
+            50% { 
+                transform: scale(1.1);
+                filter: drop-shadow(0 0 25px rgba(0, 212, 255, 0.8));
+            }
         }
 
         .stat-label {
-            font-size: 18px;
-            color: #999;
+            font-size: 1rem;
+            color: #888;
             text-transform: uppercase;
             letter-spacing: 2px;
+            font-weight: 500;
         }
 
-        .download-btn {
-            background: linear-gradient(135deg, #00ffff, #8a2be2);
-            border: none;
-            padding: 20px 40px;
-            font-size: 18px;
+        /* Features Section */
+        .features-section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .features-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .features-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 60px;
+            background: linear-gradient(45deg, #00d4ff, #00ffaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-weight: bold;
-            color: white;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
             position: relative;
             overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 212, 255, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #00d4ff, #00ffaa);
+            border-radius: 20px;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            animation: iconPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+            }
+            50% { 
+                transform: scale(1.05);
+                box-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
+            }
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .feature-description {
+            font-size: 1rem;
+            color: #b0b0b0;
+            line-height: 1.6;
+        }
+
+        /* Animated counter effect */
+        .counter {
+            animation: countUp 3s ease-out forwards;
+        }
+
+        @keyframes countUp {
+            from { 
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to { 
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Download button */
+        .download-btn {
+            background: linear-gradient(45deg, #00d4ff, #0099cc);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.5);
         }
 
         .download-btn::before {
@@ -226,7 +374,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
             transition: left 0.5s;
         }
 
@@ -234,663 +382,149 @@
             left: 100%;
         }
 
-        .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(138, 43, 226, 0.4);
-        }
-
-        .download-btn::after {
-            content: '↓';
-            font-size: 20px;
-            transition: transform 0.3s ease;
-        }
-
-        .download-btn:hover::after {
-            transform: translateY(3px);
-        }
-
-
-  
-
-
-
-
-
-
-
-
-     
-
-
-
-        /* Purple accent elements */
-        .accent-elements {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .purple-glow-1 {
-            position: absolute;
-            top: 20%;
-            right: 10%;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(138, 43, 226, 0.3), transparent);
-            border-radius: 50%;
-            filter: blur(50px);
-            animation: pulse 4s ease-in-out infinite;
-        }
-
-        .purple-glow-2 {
-            position: absolute;
-            bottom: 30%;
-            left: 5%;
-            width: 150px;
-            height: 150px;
-            background: radial-gradient(circle, rgba(138, 43, 226, 0.2), transparent);
-            border-radius: 50%;
-            filter: blur(40px);
-            animation: pulse 3s ease-in-out infinite reverse;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(1.1); }
-        }
-
-        /* Features Section */
-        .features-section {
-            padding: 100px 50px;
-            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(138,43,226,0.05) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .features-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .features-title {
-            font-size: 48px;
-            font-weight: bold;
-            color: white;
-            margin-bottom: 60px;
-            background: linear-gradient(135deg, #00ffff, #8a2be2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
-        }
-
-        .feature-card {
-            background: linear-gradient(135deg, rgba(20, 20, 20, 0.8), rgba(40, 0, 40, 0.3));
-            border: 1px solid rgba(138, 43, 226, 0.3);
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            transition: all 0.4s ease;
-            backdrop-filter: blur(10px);
-            position: relative;
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(0, 255, 255, 0.05), rgba(138, 43, 226, 0.05));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .feature-card:hover::before {
-            opacity: 1;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0, 255, 255, 0.2), 0 0 30px rgba(138, 43, 226, 0.3);
-            border-color: rgba(0, 255, 255, 0.5);
-        }
-
-        .feature-card.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .feature-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #00ffff, #8a2be2);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 25px;
-            color: white;
-            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 1;
-        }
-
-        .feature-card:hover .feature-icon {
-            transform: scale(1.1);
-            box-shadow: 0 15px 40px rgba(138, 43, 226, 0.4);
-        }
-
-        .feature-icon svg {
-            width: 32px;
-            height: 32px;
-        }
-
-        .feature-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: white;
-            margin-bottom: 15px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .feature-description {
-            color: #ccc;
-            line-height: 1.6;
-            font-size: 16px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Download Section */
-        .download-section {
-            padding: 100px 50px;
-            background: linear-gradient(180deg, rgba(138,43,226,0.05) 0%, rgba(0,0,0,0) 100%);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .download-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-            width: 100%;
-        }
-
-        .download-title {
-            font-size: 56px;
-            font-weight: bold;
-            color: white;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #00ffff, #8a2be2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .download-subtitle {
-            font-size: 20px;
-            color: #ccc;
-            margin-bottom: 60px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .download-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 80px;
-            margin-bottom: 40px;
-        }
-
-        .download-info-card {
-            background: linear-gradient(135deg, rgba(20, 20, 20, 0.9), rgba(40, 0, 40, 0.3));
-            border: 1px solid rgba(138, 43, 226, 0.3);
-            border-radius: 20px;
-            padding: 40px;
-            text-align: left;
-            backdrop-filter: blur(10px);
-            position: relative;
-            overflow: hidden;
-            max-width: 400px;
-            width: 100%;
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: all 0.8s ease;
-        }
-
-        .download-info-card.animate {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .download-info-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(0, 255, 255, 0.05), rgba(138, 43, 226, 0.05));
-            pointer-events: none;
-        }
-
-        .executor-name {
-            font-size: 28px;
-            font-weight: bold;
-            color: #00ffff;
-            margin-bottom: 10px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .executor-subtitle {
-            font-size: 12px;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 30px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .download-specs {
-            margin-bottom: 30px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .spec-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(138, 43, 226, 0.2);
-        }
-
-        .spec-row:last-child {
-            border-bottom: none;
-        }
-
-        .spec-label {
-            color: #999;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .spec-value {
-            color: #00ffff;
-            font-weight: bold;
-        }
-
-        .download-final-btn {
-            width: 100%;
-            background: linear-gradient(135deg, #00ffff, #8a2be2);
-            border: none;
-            padding: 18px;
-            font-size: 16px;
-            font-weight: bold;
-            color: white;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-        }
-
-        .download-final-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .download-final-btn:hover::before {
-            left: 100%;
-        }
-
-        .download-final-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(138, 43, 226, 0.4);
-        }
-
-        .download-icon {
-            font-size: 18px;
-            transition: transform 0.3s ease;
-        }
-
-        .download-final-btn:hover .download-icon {
-            transform: translateY(3px);
-        }
-
-        .download-visual {
-            flex: 1;
-            max-width: 500px;
-            opacity: 0;
-            transform: translateX(50px);
-            transition: all 0.8s ease 0.2s;
-        }
-
-        .download-visual.animate {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .laptop-mockup {
-            background: linear-gradient(135deg, #333, #111);
-            border-radius: 20px;
-            padding: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
-            transform: perspective(1000px) rotateX(5deg) rotateY(-5deg);
-            position: relative;
-        }
-
-        .laptop-screen {
-            background: #000;
-            border-radius: 10px;
-            overflow: hidden;
-            aspect-ratio: 16/10;
-            position: relative;
-        }
-
-        .screen-content {
-            padding: 20px;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
- 
-
-        .mock-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
- 
-
-  
-
-   
-
-        
-
-        .download-note {
-            color: #888;
-            font-style: italic;
-            margin-top: 20px;
-        }
-
-        /* Responsive */
+        /* Responsive design */
         @media (max-width: 768px) {
-            .header {
-                padding: 20px 20px;
-                flex-direction: column;
-                gap: 20px;
+            .main-title {
+                font-size: 4rem;
             }
-
-            .main-content {
-                flex-direction: column;
-                padding: 50px 20px;
-                gap: 50px;
-                justify-content: center;
-            }
-
-            .features-section {
-                padding: 80px 20px;
-            }
-
-            .features-title {
-                font-size: 36px;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .download-section {
-                padding: 80px 20px;
-            }
-
-            .download-title {
-                font-size: 40px;
-            }
-
-            .download-content {
-                flex-direction: column;
-                gap: 40px;
-            }
-
-            .download-visual {
-                transform: none;
-            }
-
-            .laptop-mockup {
-                transform: none;
-            }
-
-            .title {
-                font-size: 80px;
-            }
-
+            
             .subtitle {
-                font-size: 32px;
+                font-size: 2rem;
             }
-
+            
             .stats {
                 gap: 40px;
             }
-
+            
             .stat-number {
-                font-size: 48px;
+                font-size: 3rem;
+            }
+            
+            header {
+                padding: 20px 30px;
+            }
+            
+            nav {
+                gap: 20px;
+            }
+        }
+
+        /* Loading animation for numbers */
+        .stat-number.loading {
+            animation: loading 1.5s ease-in-out;
+        }
+
+        @keyframes loading {
+            0% { 
+                transform: rotateX(90deg);
+                opacity: 0;
+            }
+            50% {
+                transform: rotateX(45deg);
+                opacity: 0.5;
+            }
+            100% { 
+                transform: rotateX(0deg);
+                opacity: 1;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Background particles -->
-    <div class="bg-particles" id="particles"></div>
-
-    <!-- Purple accent elements -->
-    <div class="accent-elements">
-        <div class="purple-glow-1"></div>
-        <div class="purple-glow-2"></div>
-    </div>
-
-    <!-- Header -->
-    <header class="header">
+    <div class="background" id="particles"></div>
+    
+    <header>
         <div class="logo">
-            <img src="https://iili.io/FNAUopS.md.png" alt="Lune">
-            Lune
+            <img src="https://iili.io/FNAUopS.md.png" alt="Lune Logo">
+            <span>Lune</span>
         </div>
-        <nav class="nav">
+        <nav>
             <a href="#inicio">Início</a>
-            <a href="#features" onclick="scrollToFeatures()">Features</a>
+            <a href="#features">Features</a>
             <a href="#download">Download</a>
         </nav>
     </header>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="left-section">
-            <h1 class="title">Lune</h1>
-            <h2 class="subtitle">Executor</h2>
-            <p class="description">
-               O executor mais estável e eficiente para Roblox. Sem travamentos, sem sistemas de key, com compatibilidade total.
-            </p>
-            
-            <div class="stats">
-                <div class="stat">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">UNC</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">0</div>
-                    <div class="stat-label">Crashes</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">1</div>
-                    <div class="stat-label">API Eficiente</div>
-                </div>
-            </div>
+    <div class="main-content">
+        <h1 class="main-title">Lune</h1>
+        <h2 class="subtitle">Executor</h2>
+        <p class="description">
+            O executor mais estável e eficiente para Roblox. Sem travamentos, sem sistemas de key, com compatibilidade total.
+        </p>
 
-            <a href="#download" class="download-btn" onclick="scrollToDownload()">Download Grátis</a>
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number-container">
+                    <span class="stat-number counter" data-target="100">0</span><span class="stat-percent">%</span>
+                </div>
+                <div class="stat-label">UNC</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number-container">
+                    <span class="stat-number counter" data-target="0">0</span>
+                </div>
+                <div class="stat-label">Crashes</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number-container">
+                    <span class="stat-number counter" data-target="1">0</span>
+                </div>
+                <div class="stat-label">API Eficiente</div>
+            </div>
         </div>
 
-
-                
-             
-                
-             
-    </main>
+        <a href="https://example.com" class="download-btn" target="_blank">Download Grátis ↓</a>
+    </div>
 
     <!-- Features Section -->
     <section id="features" class="features-section">
-        <div class="features-container">
-            <h2 class="features-title">Por que escolher Lune?</h2>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg viewBox="0 0 24 24" width="24" height="24">
-                            <path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                        </svg>
-                    </div>
-                    <h3 class="feature-title">100% UNC</h3>
-                    <p class="feature-description">
-                        Compatibilidade total com Universal Naming Convention. Execute qualquer script sem limitações.
-                    </p>
+        <h2 class="features-title">Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <!-- Espaço para ícone do 100% UNC - coloque aqui seu ícone -->
                 </div>
+                <h3 class="feature-title">100% UNC</h3>
+                <p class="feature-description">
+                    Compatibilidade total com Universal Naming Convention. Execute qualquer script sem limitações.
+                </p>
+            </div>
 
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg viewBox="0 0 24 24" width="24" height="24">
-                            <path fill="currentColor" d="M18,8A6,6 0 0,1 12,14A6,6 0 0,1 6,8C6,5.31 7.8,3.07 10.34,2.42C10.22,2.95 10.16,3.5 10.16,4.06C10.16,7.15 12.85,9.84 15.94,9.84C16.5,9.84 17.05,9.78 17.58,9.66C16.93,12.2 14.69,14 12,14A6,6 0 0,1 6,8A6,6 0 0,1 12,2A6,6 0 0,1 18,8Z"/>
-                        </svg>
-                    </div>
-                    <h3 class="feature-title">No Key</h3>
-                    <p class="feature-description">
-                        Sem necessidade de chaves ou verificações. Download direto e uso imediato.
-                    </p>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <!-- Espaço para ícone do No Key - coloque aqui seu ícone -->
                 </div>
+                <h3 class="feature-title">No Key</h3>
+                <p class="feature-description">
+                    Sem necessidade de chaves ou verificações. Download direto e uso imediato.
+                </p>
+            </div>
 
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg viewBox="0 0 24 24" width="24" height="24">
-                            <path fill="currentColor" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/>
-                        </svg>
-                    </div>
-                    <h3 class="feature-title">No Crash</h3>
-                    <p class="feature-description">
-                        Sistema anti-crash avançado. Estabilidade garantida em todas as situações.
-                    </p>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <!-- Espaço para ícone do No Crash - coloque aqui seu ícone -->
                 </div>
+                <h3 class="feature-title">No Crash</h3>
+                <p class="feature-description">
+                    Sistema anti-crash avançado. Estabilidade garantida em todas as situações.
+                </p>
+            </div>
 
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg viewBox="0 0 24 24" width="24" height="24">
-                            <path fill="currentColor" d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.22,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.22,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.68 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/>
-                        </svg>
-                    </div>
-                    <h3 class="feature-title">Interface Moderna</h3>
-                    <p class="feature-description">
-                        Design intuitivo e moderno. Fácil de usar para iniciantes e profissionais.
-                    </p>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <!-- Espaço para ícone da Interface Moderna - coloque aqui seu ícone -->
                 </div>
+                <h3 class="feature-title">Interface Moderna</h3>
+                <p class="feature-description">
+                    Design intuitivo e moderno. Fácil de usar para iniciantes e profissionais.
+                </p>
             </div>
         </div>
     </section>
-
-    <!-- Download Section -->
-    <section id="download" class="download-section">
-        <div class="download-container">
-            <h2 class="download-title">Pronto para começar?</h2>
-            <p class="download-subtitle">Baixe o Lune agora e experimente o melhor executor para Roblox</p>
-            
-            <div class="download-content">
-                <div class="download-info-card">
-                    <h3 class="executor-name">Lune Executor</h3>
-                    <p class="executor-subtitle">LUNE EXECUTOR CRIADO POR ICYRLQ</p>
-                    
-                    <div class="download-specs">
-                        <div class="spec-row">
-                            <span class="spec-label">VERSÃO:</span>
-                            <span class="spec-value">v2</span>
-                        </div>
-                        <div class="spec-row">
-                            <span class="spec-label">TAMANHO:</span>
-                            <span class="spec-value">6 MB</span>
-                        </div>
-                        <div class="spec-row">
-                            <span class="spec-label">SISTEMA:</span>
-                            <span class="spec-value">Windows 10/11</span>
-                        </div>
-                    </div>
-                    
-                    <button class="download-final-btn">
-                        <span class="download-icon">⬇</span>
-                        Download Lune
-                    </button>
-                </div>
-                
-                <div class="download-visual">
-                    <div class="laptop-mockup">
-                        <div class="laptop-screen">
-                            <div class="screen-content">
-                             
-                                    <div class="mock-header">
-                                        
-                                        </div>
-                                    </div>
-                                
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <p class="download-note">* Gratuito para sempre</p>
-        </div>
-    </section>
+    </div>
 
     <script>
-        // Criar partículas animadas no fundo
+        // Create animated background particles
         function createParticles() {
             const container = document.getElementById('particles');
             const particleCount = 50;
@@ -899,134 +533,86 @@
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 
-                // Posição aleatória
+                // Random size and position
+                const size = Math.random() * 4 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
                 particle.style.left = Math.random() * 100 + '%';
                 particle.style.top = Math.random() * 100 + '%';
                 
-                // Delay de animação aleatório
+                // Random animation delay and duration
                 particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (3 + Math.random() * 3) + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
                 
                 container.appendChild(particle);
             }
         }
 
-
-
-        // Efeito de hover nos números das estatísticas
-        function animateStats() {
-            const statNumbers = document.querySelectorAll('.stat-number');
+        // Animate counters
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
             
-            statNumbers.forEach(stat => {
-                const finalValue = stat.textContent;
-                let currentValue = 0;
-                const isPercentage = finalValue.includes('%');
-                const numericValue = parseInt(finalValue.replace('%', ''));
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const duration = 2000; // 2 seconds
+                const increment = target / (duration / 16); // 60fps
+                let current = 0;
                 
-                const increment = numericValue > 50 ? 2 : 1;
-                const duration = 2000;
-                const stepTime = duration / numericValue;
+                counter.classList.add('loading');
                 
-                stat.textContent = '0' + (isPercentage ? '%' : '');
-                
-                const counter = setInterval(() => {
-                    currentValue += increment;
-                    if (currentValue >= numericValue) {
-                        currentValue = numericValue;
-                        clearInterval(counter);
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                        counter.classList.remove('loading');
                     }
-                    stat.textContent = currentValue + (isPercentage ? '%' : '');
-                }, stepTime);
+                    counter.textContent = Math.floor(current);
+                }, 16);
             });
         }
 
-        // Smooth scroll para a seção features
-        function scrollToFeatures() {
-            document.getElementById('features').scrollIntoView({
-                behavior: 'smooth'
-            });
-        }
+        // Initialize animations when page loads
+        window.addEventListener('load', () => {
+            createParticles();
+            setTimeout(animateCounters, 500); // Delay counter animation slightly
+        });
 
-        // Smooth scroll para a seção download
-        function scrollToDownload() {
-            document.getElementById('download').scrollIntoView({
-                behavior: 'smooth'
-            });
-        }
-
-        // Animação dos cards de features quando entram na tela
-        function animateFeatures() {
-            const cards = document.querySelectorAll('.feature-card');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry, index) => {
-                    if (entry.isIntersecting) {
-                        setTimeout(() => {
-                            entry.target.classList.add('animate');
-                        }, index * 200);
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-
-            cards.forEach(card => {
-                observer.observe(card);
-            });
-        }
-
-        // Animação da seção download quando entra na tela
-        function animateDownload() {
-            const downloadCard = document.querySelector('.download-info-card');
-            const downloadVisual = document.querySelector('.download-visual');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        setTimeout(() => {
-                            downloadCard.classList.add('animate');
-                        }, 300);
-                        setTimeout(() => {
-                            downloadVisual.classList.add('animate');
-                        }, 600);
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-
-            observer.observe(document.querySelector('.download-section'));
-        }
-
-        // Smooth scroll para links de navegação
-        document.querySelectorAll('.nav a').forEach(link => {
+        // Add smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(link => {
             link.addEventListener('click', (e) => {
-                if (link.getAttribute('href').startsWith('#')) {
-                    e.preventDefault();
+                e.preventDefault();
+                const href = link.getAttribute('href');
+                
+                if (href === '#features') {
+                    const featuresSection = document.getElementById('features');
+                    featuresSection.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Trigger animation after scroll
+                    setTimeout(() => {
+                        featuresSection.classList.add('visible');
+                    }, 500);
                 }
             });
         });
 
-        // Inicializar animações quando a página carregar
-        window.addEventListener('load', () => {
-            createParticles();
-            setTimeout(typewriterEffect, 500);
-            setTimeout(animateStats, 1000);
-            animateFeatures();
-            animateDownload();
-        });
+        // Intersection Observer for features animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
 
-        // Efeito de mouse trail (rastro do mouse)
-        let mouseTrail = [];
-        document.addEventListener('mousemove', (e) => {
-            mouseTrail.push({x: e.clientX, y: e.clientY, time: Date.now()});
-            
-            if (mouseTrail.length > 10) {
-                mouseTrail.shift();
-            }
-            
-            // Limpar trails antigos
-            mouseTrail = mouseTrail.filter(point => Date.now() - point.time < 1000);
-        });
+        // Observe features section
+        const featuresSection = document.getElementById('features');
+        if (featuresSection) {
+            observer.observe(featuresSection);
+        }
     </script>
 </body>
 </html>
