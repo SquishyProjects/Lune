@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
- 
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lune Executor</title>
    <link rel="icon" href="https://iili.io/FO39mkG.md.png" type="image/png">
-
-    
 
     <style>
         * {
@@ -18,12 +14,11 @@
         }
 
         body {
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            background: linear-gradient(135deg, #0a0a0a 0%, #2e1a4a 50%, #3e1650 100%);
             color: white;
             font-family: 'Arial', sans-serif;
             min-height: 100vh;
             overflow-x: hidden;
-         
         }
 
         /* Animated background particles */
@@ -39,7 +34,7 @@
 
         .particle {
             position: absolute;
-            background: linear-gradient(45deg, #00d4ff, #0099cc);
+            background: linear-gradient(45deg, #9d4edd, #c77dff);
             border-radius: 50%;
             animation: float 6s ease-in-out infinite;
         }
@@ -68,19 +63,19 @@
         .logo img {
             width: 40px;
             height: 40px;
-            filter: drop-shadow(0 0 10px #00d4ff);
+            filter: drop-shadow(0 0 10px #9d4edd);
             animation: glow 2s ease-in-out infinite alternate;
         }
 
         @keyframes glow {
-            from { filter: drop-shadow(0 0 10px #00d4ff); }
-            to { filter: drop-shadow(0 0 20px #00d4ff) drop-shadow(0 0 30px #0099cc); }
+            from { filter: drop-shadow(0 0 10px #9d4edd); }
+            to { filter: drop-shadow(0 0 20px #9d4edd) drop-shadow(0 0 30px #c77dff); }
         }
 
         .logo span {
             font-size: 24px;
             font-weight: bold;
-            background: linear-gradient(45deg, #00d4ff, #0099cc);
+            background: linear-gradient(45deg, #9d4edd, #c77dff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -100,7 +95,7 @@
         }
 
         nav a:hover {
-            color: #00d4ff;
+            color: #9d4edd;
             transform: translateY(-2px);
         }
 
@@ -111,7 +106,7 @@
             height: 2px;
             bottom: -5px;
             left: 0;
-            background: linear-gradient(45deg, #00d4ff, #0099cc);
+            background: linear-gradient(45deg, #9d4edd, #c77dff);
             transition: width 0.3s ease;
         }
 
@@ -130,22 +125,22 @@
         .main-title {
             font-size: 6rem;
             font-weight: bold;
-            background: linear-gradient(45deg, #00d4ff, #0099cc, #00ffaa);
+            background: linear-gradient(45deg, #9d4edd, #c77dff, #e0aaff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 30px;
             animation: titleGlow 3s ease-in-out infinite alternate;
-            text-shadow: 0 0 50px rgba(0, 212, 255, 0.5);
+            text-shadow: 0 0 50px rgba(157, 78, 221, 0.5);
         }
 
         @keyframes titleGlow {
             from { 
-                filter: drop-shadow(0 0 20px #00d4ff);
+                filter: drop-shadow(0 0 20px #9d4edd);
                 transform: scale(1);
             }
             to { 
-                filter: drop-shadow(0 0 40px #00d4ff) drop-shadow(0 0 60px #0099cc);
+                filter: drop-shadow(0 0 40px #9d4edd) drop-shadow(0 0 60px #c77dff);
                 transform: scale(1.02);
             }
         }
@@ -194,7 +189,7 @@
         .stat-number {
             font-size: 4rem;
             font-weight: bold;
-            background: linear-gradient(45deg, #00d4ff, #00ffaa);
+            background: linear-gradient(45deg, #9d4edd, #e0aaff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -205,7 +200,7 @@
         .stat-percent {
             font-size: 4rem;
             font-weight: bold;
-            background: linear-gradient(45deg, #00d4ff, #00ffaa);
+            background: linear-gradient(45deg, #9d4edd, #e0aaff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -215,11 +210,11 @@
         @keyframes pulse {
             0%, 100% { 
                 transform: scale(1);
-                filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.5));
+                filter: drop-shadow(0 0 15px rgba(157, 78, 221, 0.5));
             }
             50% { 
                 transform: scale(1.1);
-                filter: drop-shadow(0 0 25px rgba(0, 212, 255, 0.8));
+                filter: drop-shadow(0 0 25px rgba(157, 78, 221, 0.8));
             }
         }
 
@@ -250,7 +245,7 @@
             font-size: 3rem;
             text-align: center;
             margin-bottom: 60px;
-            background: linear-gradient(45deg, #00d4ff, #00ffaa);
+            background: linear-gradient(45deg, #9d4edd, #e0aaff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -267,7 +262,7 @@
 
         .feature-card {
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(0, 212, 255, 0.2);
+            border: 1px solid rgba(157, 78, 221, 0.2);
             border-radius: 20px;
             padding: 40px 30px;
             text-align: center;
@@ -284,14 +279,14 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(157, 78, 221, 0.1), transparent);
             transition: left 0.6s;
         }
 
         .feature-card:hover {
             transform: translateY(-10px);
-            border-color: rgba(0, 212, 255, 0.5);
-            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+            border-color: rgba(157, 78, 221, 0.5);
+            box-shadow: 0 20px 40px rgba(157, 78, 221, 0.2);
         }
 
         .feature-card:hover::before {
@@ -301,7 +296,7 @@
         .feature-icon {
             width: 80px;
             height: 80px;
-            background: linear-gradient(45deg, #00d4ff, #00ffaa);
+            background: linear-gradient(45deg, #9d4edd, #e0aaff);
             border-radius: 20px;
             margin: 0 auto 25px;
             display: flex;
@@ -322,11 +317,11 @@
         @keyframes iconPulse {
             0%, 100% { 
                 transform: scale(1);
-                box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+                box-shadow: 0 0 20px rgba(157, 78, 221, 0.3);
             }
             50% { 
                 transform: scale(1.05);
-                box-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
+                box-shadow: 0 0 30px rgba(157, 78, 221, 0.6);
             }
         }
 
@@ -361,7 +356,7 @@
 
         /* Download button */
         .download-btn {
-            background: linear-gradient(45deg, #00d4ff, #0099cc);
+            background: linear-gradient(45deg, #9d4edd, #7b2cbf);
             color: white;
             padding: 18px 40px;
             border: none;
@@ -374,12 +369,12 @@
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(157, 78, 221, 0.3);
         }
 
         .download-btn:hover {
             transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.5);
+            box-shadow: 0 15px 40px rgba(157, 78, 221, 0.5);
         }
 
         .download-btn::before {
