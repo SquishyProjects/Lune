@@ -24,6 +24,18 @@
             position: relative;
         }
 
+        /* Footer */
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            background-color: transparent;
+            color: white;
+            font-size: 14px;
+        }
+
         /* Animated background particles */
         .background {
             position: fixed;
@@ -37,7 +49,7 @@
 
         .particle {
             position: absolute;
-            background: linear-gradient(45deg, #00ffff, #00cccc);
+            background: linear-gradient(45deg, #9966cc, #aa77dd);
             border-radius: 50%;
             animation: float 6s ease-in-out infinite;
         }
@@ -50,13 +62,13 @@
         /* Main download card */
         .download-card {
             background: rgba(0, 0, 0, 0.8);
-            border: 2px solid rgba(0, 255, 255, 0.3);
+            border: 2px solid rgba(153, 102, 204, 0.3);
             border-radius: 20px;
             padding: 40px;
             max-width: 450px;
             width: 90%;
             backdrop-filter: blur(15px);
-            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.1), 0 10px 20px rgba(128, 0, 128, 0.05);
+            box-shadow: 0 20px 40px rgba(153, 102, 204, 0.1), 0 10px 20px rgba(170, 119, 221, 0.05);
             animation: cardGlow 3s ease-in-out infinite alternate;
             position: relative;
             overflow: hidden;
@@ -64,12 +76,12 @@
 
         @keyframes cardGlow {
             from { 
-                box-shadow: 0 20px 40px rgba(0, 255, 255, 0.1), 0 10px 20px rgba(128, 0, 128, 0.05);
-                border-color: rgba(0, 255, 255, 0.3);
+                box-shadow: 0 20px 40px rgba(153, 102, 204, 0.1), 0 10px 20px rgba(170, 119, 221, 0.05);
+                border-color: rgba(153, 102, 204, 0.3);
             }
             to { 
-                box-shadow: 0 25px 50px rgba(0, 255, 255, 0.2), 0 15px 30px rgba(128, 0, 128, 0.1);
-                border-color: rgba(0, 255, 255, 0.5);
+                box-shadow: 0 25px 50px rgba(153, 102, 204, 0.2), 0 15px 30px rgba(170, 119, 221, 0.1);
+                border-color: rgba(153, 102, 204, 0.5);
             }
         }
 
@@ -80,7 +92,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(153, 102, 204, 0.1), transparent);
             animation: shimmer 3s infinite;
         }
 
@@ -102,25 +114,25 @@
             width: 50px;
             height: 50px;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+            box-shadow: 0 5px 15px rgba(153, 102, 204, 0.3);
             animation: logoGlow 2s ease-in-out infinite alternate;
         }
 
         @keyframes logoGlow {
             from { 
-                box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
-                filter: drop-shadow(0 0 5px rgba(128, 0, 128, 0.2));
+                box-shadow: 0 5px 15px rgba(153, 102, 204, 0.3);
+                filter: drop-shadow(0 0 5px rgba(170, 119, 221, 0.2));
             }
             to { 
-                box-shadow: 0 8px 25px rgba(0, 255, 255, 0.5);
-                filter: drop-shadow(0 0 10px rgba(128, 0, 128, 0.4));
+                box-shadow: 0 8px 25px rgba(153, 102, 204, 0.5);
+                filter: drop-shadow(0 0 10px rgba(170, 119, 221, 0.4));
             }
         }
 
         .title {
             font-size: 2.5rem;
             font-weight: bold;
-            background: linear-gradient(45deg, #00ffff, #00cccc, #9966cc);
+            background: linear-gradient(45deg, #9966cc, #aa77dd, #cc88ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -130,11 +142,11 @@
         @keyframes titlePulse {
             0%, 100% { 
                 transform: scale(1);
-                filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.5)) drop-shadow(0 0 5px rgba(128, 0, 128, 0.3));
+                filter: drop-shadow(0 0 10px rgba(153, 102, 204, 0.5)) drop-shadow(0 0 5px rgba(170, 119, 221, 0.3));
             }
             50% { 
                 transform: scale(1.02);
-                filter: drop-shadow(0 0 15px rgba(0, 255, 255, 0.8)) drop-shadow(0 0 8px rgba(128, 0, 128, 0.5));
+                filter: drop-shadow(0 0 15px rgba(153, 102, 204, 0.8)) drop-shadow(0 0 8px rgba(170, 119, 221, 0.5));
             }
         }
 
@@ -145,7 +157,7 @@
             margin-bottom: 40px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            text-shadow: 0 0 5px rgba(128, 0, 128, 0.3);
+            text-shadow: 0 0 5px rgba(170, 119, 221, 0.3);
         }
 
         /* Info items */
@@ -165,8 +177,8 @@
 
         .info-item:hover {
             transform: translateX(10px);
-            border-bottom-color: rgba(0, 255, 255, 0.3);
-            box-shadow: 0 2px 10px rgba(128, 0, 128, 0.1);
+            border-bottom-color: rgba(153, 102, 204, 0.3);
+            box-shadow: 0 2px 10px rgba(170, 119, 221, 0.1);
         }
 
         .info-item:last-child {
@@ -179,13 +191,13 @@
             text-transform: uppercase;
             font-weight: 500;
             letter-spacing: 1px;
-            text-shadow: 0 0 3px rgba(128, 0, 128, 0.2);
+            text-shadow: 0 0 3px rgba(170, 119, 221, 0.2);
         }
 
         .info-value {
             font-size: 1.1rem;
             font-weight: bold;
-            background: linear-gradient(45deg, #00ffff, #00cccc, #9966cc);
+            background: linear-gradient(45deg, #9966cc, #aa77dd, #cc88ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -193,14 +205,14 @@
         }
 
         @keyframes valueGlow {
-            from { filter: drop-shadow(0 0 5px rgba(0, 255, 255, 0.3)) drop-shadow(0 0 3px rgba(128, 0, 128, 0.2)); }
-            to { filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.6)) drop-shadow(0 0 6px rgba(128, 0, 128, 0.4)); }
+            from { filter: drop-shadow(0 0 5px rgba(153, 102, 204, 0.3)) drop-shadow(0 0 3px rgba(170, 119, 221, 0.2)); }
+            to { filter: drop-shadow(0 0 10px rgba(153, 102, 204, 0.6)) drop-shadow(0 0 6px rgba(170, 119, 221, 0.4)); }
         }
 
         /* Download button */
         .download-btn {
             width: 100%;
-            background: linear-gradient(45deg, #00ffff, #00cccc, #9966cc);
+            background: linear-gradient(45deg, #9966cc, #aa77dd, #cc88ff);
             color: #000;
             padding: 18px;
             border: none;
@@ -216,13 +228,13 @@
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3), 0 5px 15px rgba(128, 0, 128, 0.2);
+            box-shadow: 0 10px 30px rgba(153, 102, 204, 0.3), 0 5px 15px rgba(170, 119, 221, 0.2);
         }
 
         .download-btn:hover {
             transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.5), 0 8px 25px rgba(128, 0, 128, 0.3);
-            background: linear-gradient(45deg, #00cccc, #00ffff, #aa77dd);
+            box-shadow: 0 15px 40px rgba(153, 102, 204, 0.5), 0 8px 25px rgba(170, 119, 221, 0.3);
+            background: linear-gradient(45deg, #aa77dd, #cc88ff, #dd99ff);
         }
 
         .download-btn::before {
@@ -243,7 +255,7 @@
         .download-icon {
             font-size: 1.5rem;
             animation: bounce 2s ease-in-out infinite;
-            filter: drop-shadow(0 0 3px rgba(128, 0, 128, 0.5));
+            filter: drop-shadow(0 0 3px rgba(170, 119, 221, 0.5));
         }
 
         @keyframes bounce {
@@ -292,7 +304,7 @@
         .loading-progress {
             width: 0;
             height: 100%;
-            background: linear-gradient(45deg, #00ffff, #00cccc, #9966cc);
+            background: linear-gradient(45deg, #9966cc, #aa77dd, #cc88ff);
             border-radius: 2px;
             animation: loading 3s ease-out forwards;
         }
@@ -310,7 +322,7 @@
             left: -2px;
             right: -2px;
             bottom: -2px;
-            background: linear-gradient(45deg, rgba(0, 255, 255, 0.1), rgba(128, 0, 128, 0.1), transparent);
+            background: linear-gradient(45deg, rgba(153, 102, 204, 0.1), rgba(170, 119, 221, 0.1), transparent);
             border-radius: 22px;
             z-index: -1;
             animation: borderPulse 4s ease-in-out infinite;
@@ -323,9 +335,9 @@
     </style>
 </head>
 <body>
-     <footer style="position: fixed; bottom: 0; width: 100%; text-align: center; padding: 10px; background-color: transparent; color: white; font-size: 14px;">
-  © 2025 Lune. Todos os direitos reservados.
-</footer>
+    <footer>
+        © 2025 Lune. Todos os direitos reservados.
+    </footer>
 
     <div class="background" id="particles"></div>
     
